@@ -57,3 +57,14 @@ select c.customername, c.country,c.creditlimit,o.status,(od.quantityOrdered * od
 from customers as c inner join orders as o on c.customernumber = o.customernumber
 inner join orderdetails as od on o.ordernumber = od.ordernumber;
  
+ #last higest 
+ select c.customername, c.country,c.creditlimit,o.status,(od.quantityOrdered * od.priceeach) as total 
+from customers as c inner join orders as o on c.customernumber = o.customernumber
+inner join orderdetails as od on o.ordernumber = od.ordernumber limit 1;
+
+#gruop 
+select c.customername, c.country,c.creditlimit,o.status,sum(od.quantityOrdered * od.priceeach) as total 
+from customers as c inner join orders as o on c.customernumber = o.customernumber
+inner join orderdetails as od on o.ordernumber = od.ordernumber group by c.customername;
+ 
+ 
