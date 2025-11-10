@@ -35,6 +35,36 @@ sum(sale) over(partition by fiscal_year order by sale desc) as year_part from sa
 select *,
 rank() over(partition by fiscal_year order by sale desc) as rnk from sales1;
 
+#dense rank
 select *,
 dense_rank() over(partition by fiscal_year order by sale desc) as drnk from sales1;
+
+#lead
+select *,
+lead(sale) over(partition by fiscal_year order by sale desc) 
+as lead_sale from sales1;
+
+
+#log
+select *,
+lag(sale) over(partition by fiscal_year order by sale desc) 
+as lag_sale from sales1;
+
+#row number
+select *,
+row_number() over(partition by fiscal_year order by sale desc) 
+as rownumber from sales1;
+
+#all 
+select *,
+sum(sale) over(partition by fiscal_year order by sale desc) sum_sale,
+max(sale) over(partition by fiscal_year order by sale desc) max_sale,
+min(sale) over(partition by fiscal_year order by sale desc) min_sale,
+avg(sale) over(partition by fiscal_year order by sale desc) avg_sale,
+rank() over(partition by fiscal_year order by sale desc) as rank_sale,
+dense_rank() over(partition by fiscal_year order by sale desc) as derank_sale,
+lead(sale) over(partition by fiscal_year order by sale desc) as lead_sale,
+lag(sale) over(partition by fiscal_year order by sale desc) as lag_sale,
+row_number() over(partition by fiscal_year order by sale desc) as row_num
+from sales1;
 
