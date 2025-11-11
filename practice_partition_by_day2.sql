@@ -38,5 +38,8 @@ select *,
 row_number() over(partition by month order by sales_amount) as row_num
 from sales_data;
 
-
+select *,
+avg(sales_amount) over(partition by region order by sales_amount) as avg_amount,
+sales_amount -  avg(sales_amount) over(partition by region order by sales_amount) as comapred_avg_amount
+from sales_data;
 
