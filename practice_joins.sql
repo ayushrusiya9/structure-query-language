@@ -16,3 +16,4 @@ on c.customernumber = o.customernumber;
 select * from customers c left join orders o
 on c.customernumber = o.customernumber 
 where ordernumber is null;
+
