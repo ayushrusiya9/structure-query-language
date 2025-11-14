@@ -138,14 +138,3 @@ select * from info4;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
