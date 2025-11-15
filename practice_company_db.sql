@@ -47,3 +47,72 @@ group by region;
 select emp_id, count(*) as total_transaction
 from sales
 group by emp_id; 
+
+#Show total sales per region, but only for regions where total sales > 3000.
+select region, sum(amount) AS total_sale
+from sales 
+group by region
+having sum(amount) > 3000;
+
+#Show employees who have made more than 2 sales transactions.
+select emp_id , count(*) as total_sale
+from sales
+group by emp_id
+having count(*) > 2;
+
+#Show average sale amount per region.
+select region, sum(amount) as total_sale
+from sales
+group by region;
+
+#Combine WHERE + GROUP BY + HAVING
+-- (Find total sales per region but consider only those sales where amount > 1500 and total > 3000)
+select region, avg(amount) as avg_sale
+from sales where amount > 1500 and amount < 3000
+group by region;
+
+#Find which employee sold the highest total amount.
+select emp_id , sum(amount) as total_sale
+from sales 
+order by amount desc
+limit 1;
+
+#Show total sales per region, but only for regions where total sales > 3000.
+select region , sum(amount) as total_sale
+from sales
+group by region
+having sum(amount) > 3000;
+
+#Show employees who have made more than 2 sales transactions.
+select emp_id, count(*) as total_sale
+from sales
+group by emp_id
+having count(*) > 2;
+
+#Show average sale amount per region.
+select region, avg(amount) as avg_sale
+from sales
+group by region;
+
+#Find total sales per region but consider only those sales where amount > 1500 and total > 3000)
+select region, sum(amount) as total_sale
+from sales
+where amount > 1500
+group by region 
+having sum(amount) > 3000;
+
+
+#Find which employee sold the highest total amount.
+select emp_id, sum(amount) as total_sale 
+from sales
+group by emp_id
+order by total_sale desc
+limit 1;
+
+#with join
+SELECT e.emp_name, SUM(s.amount) AS total_sales
+FROM employees e
+JOIN sales s ON e.emp_id = s.emp_id
+GROUP BY e.emp_name
+HAVING SUM(s.amount) > 3000;
+

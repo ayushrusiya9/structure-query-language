@@ -36,3 +36,5 @@ from customers
 where country = 'usa'
 order by creditlimit desc
 limit 1;
+
+select * from customers 
